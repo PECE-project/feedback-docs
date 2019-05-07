@@ -1,0 +1,25 @@
+﻿Notes on using PECE
+
+
+Set up is extremely finicky: had to use Debian 8 x64 after several different versions of Ubuntu all failed (something to do with MySQL).
+
+
+Getting students all set up is a royal PITA: they have to create accounts, you have to manually approve them, you then have to move them into the right groups, and make sure to set them as contributor in those groups.
+
+
+Making structured analytics is not intuitive. I think I made a whole bunch of structured analytics with only a single question. What I want to do is make a structured analytic with many questions. As a workaround, I figured out I could make the analytic, and choose the make a new question option, then cancel it before writing the annotation itself. This saved the question in the question set. But this behavior seems very wrong… (But it might be the only way?) Alli saves the day: I think it's a lot easier to just navigate from your dashboard: Go to structured analytics, Use the little green + to make a new question set, Type your question, highlight the question set(s) you want it in, repeat.
+
+
+How do you delete analytics? I couldn’t figure that out. Yes. See Page 34 of the User Docs. You need to login as admin, then click on Analytics up top. You can then click on an analytic and delete them through that page.
+
+
+Class on 9/19 (we watched Milk; it was just me because Brandon was in Montreal for the RDA meeting): PECE crashed when I told the students to write their annotations. The problem was that the MySQL lock could not be gotten by the server. What this message is trying to tell you is that there is not enough memory (RAM) on the computer to handle all the concurrent users trying to access the site. An easy solution for Unix systems is to create a swap file. So I did that--made a 1GB swap file and restarted the web server and everything worked perfectly. I remember doing this trick for TAF back in the day. So we need to make it clear that PECE can be RAM hungry. I think it’s safe to say that you should anticipate 1GB for every 20 concurrent users (which can get tricky: if you have 1000 users but only 10 people access it at any one time then you only need 1GB, but if all 1000 try to access it all at once… the math comes out to 500GB of RAM, which only the most high-end servers can even dream of having).
+
+
+There is no way to pre-load tags; tags must be attached to an artifact. You can just make a dummy artifact and put attach all the tags you can think of to that artifact, then they’ll be available for other to use. Or you can just have students create new tags with their own artifacts (what we’re doing in S18).
+
+
+We were able to just talk them through creating their own questions. Neat!
+
+
+If you edit an artifact as a group admin, PECE reassigns contributor to you. This is a known bug.
